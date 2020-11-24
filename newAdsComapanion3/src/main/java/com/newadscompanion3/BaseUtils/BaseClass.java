@@ -1589,12 +1589,12 @@ public class BaseClass extends AppCompatActivity {
         }
     }
 
-    public void showSplashInterstitial() {
+    public void showSplashInterstitial(Callable<Void> mathodToFollow) {
         if (adsPrefernce.allowAccess()) {
             if (!adsPrefernce.isMediationActive()) {
                 showSplashAd();
             } else {
-                showMixedInterAds();
+                showMixedInterAds(mathodToFollow);
             }
 
         }
@@ -1839,7 +1839,7 @@ public class BaseClass extends AppCompatActivity {
 
     }
 
-    public void showMixedInterAds() {
+    public void showMixedInterAds(Callable<Void> mathodToFollow) {
         if (isNetworkAvailable(this)) {
             if (isAdsAvailable) {
                 if (adsPrefernce.planA()) {
@@ -1847,6 +1847,11 @@ public class BaseClass extends AppCompatActivity {
                         if (!isGInter1Shown) {
                             if (isGInter1Ready) {
                                 if (gInterstitial1.isLoaded() && gInterstitial1 != null) {
+                                    try {
+                                        mathodToFollow.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                     gInterstitial1.show();
                                     gInterstitial1.setAdListener(new com.google.android.gms.ads.AdListener() {
                                         public void onAdClosed() {
@@ -1874,16 +1879,16 @@ public class BaseClass extends AppCompatActivity {
                                         }
                                     });
                                 } else {
-                                    goToPlanA2();
+                                    goToPlanA2(mathodToFollow);
                                 }
                             } else {
-                                goToPlanA2();
+                                goToPlanA2(mathodToFollow);
                             }
                         } else {
-                            goToPlanA2();
+                            goToPlanA2(mathodToFollow);
                         }
                     } else {
-                        goToPlanA2();
+                        goToPlanA2(mathodToFollow);
                     }
                 } else {
                     resetAllShownBoolean();
@@ -1895,7 +1900,11 @@ public class BaseClass extends AppCompatActivity {
 
                         @Override
                         public void onAdDismissed() {
-
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
                 }
@@ -1908,6 +1917,11 @@ public class BaseClass extends AppCompatActivity {
 
                     @Override
                     public void onAdDismissed() {
+                        try {
+                            mathodToFollow.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });
@@ -1921,6 +1935,11 @@ public class BaseClass extends AppCompatActivity {
 
                 @Override
                 public void onAdDismissed() {
+                    try {
+                        mathodToFollow.call();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 }
             });
@@ -1928,12 +1947,17 @@ public class BaseClass extends AppCompatActivity {
 
     }
 
-    public void goToPlanA2() {
+    public void goToPlanA2(Callable<Void> mathodToFollow) {
 
         if (adsPrefernce.showfbInter1()) {
             if (!isFbInter1Shown) {
                 if (isFbInter1Ready) {
                     if (fbInterstitial1.isAdLoaded()) {
+                        try {
+                            mathodToFollow.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         fbInterstitial1.show();
                         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
                             @Override
@@ -1993,6 +2017,11 @@ public class BaseClass extends AppCompatActivity {
 
                                     @Override
                                     public void onAdDismissed() {
+                                        try {
+                                            mathodToFollow.call();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
 
                                     }
                                 });
@@ -2016,28 +2045,33 @@ public class BaseClass extends AppCompatActivity {
                         };
                         fbInterstitial1.buildLoadAdConfig().withAdListener(interstitialAdListener).build();
                     } else {
-                        goToPlanAI2();
+                        goToPlanAI2(mathodToFollow);
                     }
                 } else {
-                    goToPlanAI2();
+                    goToPlanAI2(mathodToFollow);
                 }
             } else {
-                goToPlanAI2();
+                goToPlanAI2(mathodToFollow);
             }
 
         } else {
-            goToPlanAI2();
+            goToPlanAI2(mathodToFollow);
         }
 
     }
 
 
-    public void goToPlanAI2() {
+    public void goToPlanAI2(Callable<Void> mathodToFollow) {
         if (adsPrefernce.planA()) {
             if (adsPrefernce.showgInter2()) {
                 if (!isGInter2Shown) {
                     if (isGInter2Ready) {
                         if (gInterstitial2.isLoaded() && gInterstitial2 != null) {
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             gInterstitial2.show();
                             gInterstitial2.setAdListener(new com.google.android.gms.ads.AdListener() {
                                 public void onAdClosed() {
@@ -2065,16 +2099,16 @@ public class BaseClass extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            goToPlanA2I2();
+                            goToPlanA2I2(mathodToFollow);
                         }
                     } else {
-                        goToPlanA2I2();
+                        goToPlanA2I2(mathodToFollow);
                     }
                 } else {
-                    goToPlanA2I2();
+                    goToPlanA2I2(mathodToFollow);
                 }
             } else {
-                goToPlanA2I2();
+                goToPlanA2I2(mathodToFollow);
             }
         } else {
             showInhouseInterAd(new InhouseInterstitialListener() {
@@ -2085,6 +2119,11 @@ public class BaseClass extends AppCompatActivity {
 
                 @Override
                 public void onAdDismissed() {
+                    try {
+                        mathodToFollow.call();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 }
             });
@@ -2092,12 +2131,17 @@ public class BaseClass extends AppCompatActivity {
         }
     }
 
-    public void goToPlanA2I2() {
+    public void goToPlanA2I2(Callable<Void> mathodToFollow) {
 
         if (adsPrefernce.showfbInter2()) {
             if (!isFbInter2Shown) {
                 if (isFbInter2Ready) {
                     if (fbInterstitial2.isAdLoaded()) {
+                        try {
+                            mathodToFollow.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         fbInterstitial2.show();
                         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
                             @Override
@@ -2159,7 +2203,11 @@ public class BaseClass extends AppCompatActivity {
 
                                     @Override
                                     public void onAdDismissed() {
-
+                                        try {
+                                            mathodToFollow.call();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                 });
 
@@ -2190,6 +2238,11 @@ public class BaseClass extends AppCompatActivity {
 
                             @Override
                             public void onAdDismissed() {
+                                try {
+                                    mathodToFollow.call();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
 
                             }
                         });
@@ -2204,6 +2257,11 @@ public class BaseClass extends AppCompatActivity {
 
                         @Override
                         public void onAdDismissed() {
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
                         }
                     });
@@ -2218,6 +2276,11 @@ public class BaseClass extends AppCompatActivity {
 
                     @Override
                     public void onAdDismissed() {
+                        try {
+                            mathodToFollow.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });
@@ -2233,6 +2296,11 @@ public class BaseClass extends AppCompatActivity {
 
                 @Override
                 public void onAdDismissed() {
+                    try {
+                        mathodToFollow.call();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 }
             });
@@ -2864,7 +2932,7 @@ public class BaseClass extends AppCompatActivity {
         }
     }
 
-    private void InterstitialAd2(final boolean loadOnClosed) {
+    private void InterstitialAd2(final boolean loadOnClosed, Callable<Void> mathodToFollow) {
         if (isNetworkAvailable(this)) {
             if (isAdsAvailable) {
                 if (adsPrefernce.planA()) {
@@ -2872,6 +2940,11 @@ public class BaseClass extends AppCompatActivity {
                         Log.e("inter2", "show: showgInter2");
                         if (gInterstitial22.isLoaded() && gInterstitial22 != null) {
                             Log.e("inter2", "show: isGInter2 isLoaded = true");
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             gInterstitial22.show();
                             gInterstitial22.setAdListener(new com.google.android.gms.ads.AdListener() {
                                 public void onAdClosed() {
@@ -2907,12 +2980,22 @@ public class BaseClass extends AppCompatActivity {
 
                                 @Override
                                 public void onAdDismissed() {
+                                    try {
+                                        mathodToFollow.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
 
                                 }
                             });
                         }
                     } else if (adsPrefernce.showfbInter2()) {
                         if (fbInterstitial22.isAdLoaded()) {
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             fbInterstitial22.show();
                             InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
                                 @Override
@@ -2938,6 +3021,11 @@ public class BaseClass extends AppCompatActivity {
 
                                         @Override
                                         public void onAdDismissed() {
+                                            try {
+                                                mathodToFollow.call();
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
 
                                         }
                                     });
@@ -2972,6 +3060,11 @@ public class BaseClass extends AppCompatActivity {
 
                             @Override
                             public void onAdDismissed() {
+                                try {
+                                    mathodToFollow.call();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
 
                             }
                         });
@@ -2987,6 +3080,11 @@ public class BaseClass extends AppCompatActivity {
 
                     @Override
                     public void onAdDismissed() {
+                        try {
+                            mathodToFollow.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });
@@ -3000,6 +3098,11 @@ public class BaseClass extends AppCompatActivity {
 
                 @Override
                 public void onAdDismissed() {
+                    try {
+                        mathodToFollow.call();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 }
             });
@@ -3008,12 +3111,17 @@ public class BaseClass extends AppCompatActivity {
         }
     }
 
-    private void InterstitialAd1(final boolean loadOnClosed) {
+    private void InterstitialAd1(final boolean loadOnClosed, Callable<Void> mathodToFollow) {
         if (isNetworkAvailable(this)) {
             if (isAdsAvailable) {
                 if (adsPrefernce.planA()) {
                     if (adsPrefernce.showgInter1()) {
                         if (gInterstitial11.isLoaded() && gInterstitial11 != null) {
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             gInterstitial11.show();
                             gInterstitial11.setAdListener(new com.google.android.gms.ads.AdListener() {
                                 public void onAdClosed() {
@@ -3039,6 +3147,12 @@ public class BaseClass extends AppCompatActivity {
 
                                 @Override
                                 public void onAdDismissed() {
+                                    try {
+                                        mathodToFollow.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
                             });
 
@@ -3048,6 +3162,11 @@ public class BaseClass extends AppCompatActivity {
                         if (adsPrefernce.showfbInter1()) {
 
                             if (fbInterstitial11.isAdLoaded()) {
+                                try {
+                                    mathodToFollow.call();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 fbInterstitial11.show();
                                 InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
                                     @Override
@@ -3073,6 +3192,11 @@ public class BaseClass extends AppCompatActivity {
 
                                             @Override
                                             public void onAdDismissed() {
+                                                try {
+                                                    mathodToFollow.call();
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
 
                                             }
                                         });
@@ -3108,6 +3232,11 @@ public class BaseClass extends AppCompatActivity {
 
                         @Override
                         public void onAdDismissed() {
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     });
 
@@ -3121,6 +3250,11 @@ public class BaseClass extends AppCompatActivity {
 
                     @Override
                     public void onAdDismissed() {
+                        try {
+                            mathodToFollow.call();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 });
@@ -3137,6 +3271,11 @@ public class BaseClass extends AppCompatActivity {
 
                 @Override
                 public void onAdDismissed() {
+                    try {
+                        mathodToFollow.call();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 }
             });
@@ -3151,30 +3290,30 @@ public class BaseClass extends AppCompatActivity {
             proceedWithDelay(1000, "Showing Ad...", new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
-                    try {
-                        mathodToFollow.call();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        mathodToFollow.call();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
                     if (!adsPrefernce.isMediationActive()) {
-                        InterstitialAd1(loadOnClosed);
+                        InterstitialAd1(loadOnClosed, mathodToFollow);
                     } else {
-                        showMixedInterAds();
+                        showMixedInterAds(mathodToFollow);
                     }
 
                     return null;
                 }
             });
         } else {
-            try {
-                mathodToFollow.call();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                mathodToFollow.call();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             if (!adsPrefernce.isMediationActive()) {
-                InterstitialAd1(loadOnClosed);
+                InterstitialAd1(loadOnClosed, mathodToFollow);
             } else {
-                showMixedInterAds();
+                showMixedInterAds(mathodToFollow);
             }
 
         }
@@ -3192,9 +3331,9 @@ public class BaseClass extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if (!adsPrefernce.isMediationActive()) {
-                        InterstitialAd2(loadOnClosed);
+                        InterstitialAd2(loadOnClosed, mathodToFollow);
                     } else {
-                        showMixedInterAds();
+                        showMixedInterAds(mathodToFollow);
                     }
 
                     return null;
@@ -3207,9 +3346,9 @@ public class BaseClass extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (!adsPrefernce.isMediationActive()) {
-                InterstitialAd2(loadOnClosed);
+                InterstitialAd2(loadOnClosed, mathodToFollow);
             } else {
-                showMixedInterAds();
+                showMixedInterAds(mathodToFollow);
             }
 
         }
