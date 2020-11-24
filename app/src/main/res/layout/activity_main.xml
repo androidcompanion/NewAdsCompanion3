@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/show_inter"
+        android:onClick="showAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inter" />
+
+    <Button
+        android:layout_below="@id/show_inter"
+        android:id="@+id/show_banner"
+        android:onClick="showBannerAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="showBanner" />
+
+    <Button
+        android:layout_below="@id/show_banner"
+        android:id="@+id/show_native"
+        android:onClick="showNativeAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="showNative" />
+    <Button
+        android:layout_below="@id/show_native"
+        android:id="@+id/show_native_banner"
+        android:onClick="showNativeBannerAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="showNativeBanner" />
+
+<!--    <include-->
+<!--        android:layout_marginBottom="380dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_above="@+id/native_ad_container"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        layout="@layout/native_banner_holder"/>-->
+
+
+    <include
+        android:layout_above="@+id/lay_banner_ad"
+        android:layout_marginBottom="80dp"
+        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        layout="@layout/native_ad_holder"/>
+
+
+
+    <include
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        layout="@layout/banner_holder"/>
+
+</RelativeLayout>
