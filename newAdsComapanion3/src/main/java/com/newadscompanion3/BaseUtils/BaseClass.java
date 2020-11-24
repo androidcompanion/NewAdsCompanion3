@@ -3325,11 +3325,11 @@ public class BaseClass extends AppCompatActivity {
             proceedWithDelay(1000, "Showing Ad...", new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
-                    try {
-                        mathodToFollow.call();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        mathodToFollow.call();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
                     if (!adsPrefernce.isMediationActive()) {
                         InterstitialAd2(loadOnClosed, mathodToFollow);
                     } else {
@@ -3340,11 +3340,11 @@ public class BaseClass extends AppCompatActivity {
                 }
             });
         } else {
-            try {
-                mathodToFollow.call();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                mathodToFollow.call();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             if (!adsPrefernce.isMediationActive()) {
                 InterstitialAd2(loadOnClosed, mathodToFollow);
             } else {
