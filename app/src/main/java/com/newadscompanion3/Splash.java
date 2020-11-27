@@ -1,13 +1,13 @@
 package com.newadscompanion3;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.newadscompanion3.Interfaces.OnNetworkChangeListner;
+
 import java.util.concurrent.Callable;
 
-public class Splash extends BaseActivity {
+public class Splash extends BaseActivity implements OnNetworkChangeListner {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,16 +16,36 @@ public class Splash extends BaseActivity {
 
         loadSplashInterstitial();
 
-        proceedWithDelay(4000, new Callable<Void>() {
+        proceedWithDelay(1000, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 startActivity(new Intent(Splash.this, MainActivity.class));
-                showSplashInterstitial();
+                showSplashInterstitial(new Callable<Void>() {
+                    @Override
+                    public Void call() throws Exception {
+                        return null;
+                    }
+                });
 
                 finish();
                 return null;
             }
         });
+
+    }
+
+    @Override
+    public void onInternetConnected() {
+
+    }
+
+    @Override
+    public void onInternetDisconnected() {
+
+    }
+
+    @Override
+    public void onAdDataDownloaded() {
 
     }
 }

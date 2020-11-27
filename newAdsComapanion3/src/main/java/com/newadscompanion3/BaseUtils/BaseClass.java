@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -64,10 +65,12 @@ import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.newadscompanion3.AdsConfig.DefaultIds;
+import com.newadscompanion3.BroadcastUtils.NetworkStateReceiver;
 import com.newadscompanion3.Interfaces.InhouseBannerListener;
 import com.newadscompanion3.Interfaces.InhouseInterstitialListener;
 import com.newadscompanion3.Interfaces.InhouseNativeListener;
 import com.newadscompanion3.Interfaces.OnCheckServiceListner;
+import com.newadscompanion3.Interfaces.OnNetworkChangeListner;
 import com.newadscompanion3.Interfaces.OnPlayVerificationFailed;
 import com.newadscompanion3.Interfaces.OnRewardAdClosedListener;
 import com.newadscompanion3.ModelsCompanion.AdsData;
@@ -92,7 +95,7 @@ import java.util.concurrent.Callable;
 
 import cz.msebera.android.httpclient.Header;
 
-public class BaseClass extends AppCompatActivity {
+public class BaseClass extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
 
 
     public RelativeLayout lay_notification;
@@ -210,6 +213,10 @@ public class BaseClass extends AppCompatActivity {
     public static boolean isvalidInstall = false;
 
     public static boolean inMobiInitialized = false;
+
+    private NetworkStateReceiver networkStateReceiver;
+
+    OnNetworkChangeListner onNetworkChangeListner;
 
     public void loadRewardAd() {
         adsPrefernce = new AdsPrefernce(this);
@@ -521,10 +528,24 @@ public class BaseClass extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        networkStateReceiver.removeListener(this);
+        this.unregisterReceiver(networkStateReceiver);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        onNetworkChangeListner = (OnNetworkChangeListner)this;
+
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
+        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+
+
         progressDialog = new ProgressDialog(this);
         defaultIds = new DefaultIds(this);
         adsPrefernce = new AdsPrefernce(this);
@@ -642,6 +663,7 @@ public class BaseClass extends AppCompatActivity {
                             ads.getSaAdCount()
                     );
 
+                    onNetworkChangeListner.onAdDataDownloaded();
 
 //                    initializeMoPubSDKforInter1(adsPrefernce.mpInterId1(), false);
 //                    initializeMoPubSDKforInter2(adsPrefernce.mpInterId2(), false);
@@ -5607,5 +5629,43 @@ public class BaseClass extends AppCompatActivity {
         }
 
     }
+
+
+
+    public interface OnNetworkChange {
+         void onConnect();
+    }
+
+
+    @Override
+    public void networkAvailable( ) {
+        if (!isInterAdLoadedIH) {
+            getInterstitalAdsInHouse(defaultIds.APP_KEY());
+        }
+        if (!isBannerAdLoadedIH) {
+            getBannerAdsInHouse(defaultIds.APP_KEY());
+        }
+        if (!isNativeAdLoadedIH) {
+            getNativeAdsInHouse(defaultIds.APP_KEY());
+        }
+
+        if (isNetworkAvailable(BaseClass.this)) {
+            if (!isAdsAvailable) {
+                getAds(defaultIds.APP_KEY());
+            }
+        }
+
+        onNetworkChangeListner = (OnNetworkChangeListner)this;
+        onNetworkChangeListner.onInternetConnected();
+
+
+    }
+
+    @Override
+    public void networkUnavailable( ) {
+        onNetworkChangeListner = (OnNetworkChangeListner)this;
+        onNetworkChangeListner.onInternetDisconnected();
+    }
+
 
 }

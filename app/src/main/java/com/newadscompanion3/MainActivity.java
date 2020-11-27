@@ -2,15 +2,15 @@ package com.newadscompanion3;
 
 import androidx.cardview.widget.CardView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.newadscompanion3.AdsConfig.NativeAdCompanion1;
+import com.newadscompanion3.Interfaces.OnNetworkChangeListner;
 
 import java.util.concurrent.Callable;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements OnNetworkChangeListner {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,21 +23,37 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public void showAd(View view) {
-//        showInterstitial1(true, new Callable<Void>() {
-//            @Override
-//            public Void call() throws Exception {
-//                return null;
-//            }
-//        });
+    @Override
+    public void onInternetConnected() {
+        loadInterstitial1();
+    }
 
-        showInter1AdonClosed(new Callable<Void>() {
+    @Override
+    public void onInternetDisconnected() {
+
+    }
+
+    @Override
+    public void onAdDataDownloaded() {
+        loadInterstitial1();
+        toast("onDoloded");
+    }
+
+    public void showAd(View view) {
+        showInterstitial2(true, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                startActivity(new Intent(MainActivity.this, MainActivity2.class));
                 return null;
             }
         });
+
+//        showInter1AdonClosed(new Callable<Void>() {
+//            @Override
+//            public Void call() throws Exception {
+//                startActivity(new Intent(MainActivity.this, MainActivity2.class));
+//                return null;
+//            }
+//        });
     }
 
     public void showBannerAd(View view) {
@@ -54,4 +70,12 @@ public class MainActivity extends BaseActivity {
     public void showNativeBannerAd(View view) {
         showNativeBannerAd(0,0);
     }
+
+
+
+
+//    @Override
+//    public void onConnect() {
+//        toast("mst jabrdast");
+//    }
 }
