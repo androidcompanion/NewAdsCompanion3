@@ -98,8 +98,7 @@
             android:id="@+id/iv_ad_icon"
             android:layout_width="100.0dip"
             android:layout_height="100.0dip"
-            android:layout_marginStart="5dp"
-            android:src="@drawable/icon" />
+            android:layout_marginStart="5dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -183,8 +182,7 @@
             android:id="@+id/iv_inter_main_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/icon" />
+            android:adjustViewBounds="true" />
 
 
     </RelativeLayout>

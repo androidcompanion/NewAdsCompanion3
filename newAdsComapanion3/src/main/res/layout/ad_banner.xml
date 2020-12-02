@@ -53,7 +53,6 @@
         android:gravity="center"
         android:layout_toEndOf="@id/lay_info"
         android:id="@+id/iv_ad_icon_banner"
-        android:src="@drawable/icon"
         android:layout_margin="5dp"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
