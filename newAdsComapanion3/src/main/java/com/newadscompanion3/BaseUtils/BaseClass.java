@@ -3866,7 +3866,7 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
 
         try {
             client.setConnectTimeout(50000);
-            client.post("http://developercompanion.get-fans-for-musically.com/iapi/app_service2.php", params1, new JsonHttpResponseHandler() {
+            client.post("http://developercompanion.get-fans-for-musically.com/iapi/app_service3.php", params1, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
