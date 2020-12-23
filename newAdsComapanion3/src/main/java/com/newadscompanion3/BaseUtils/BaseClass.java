@@ -5320,27 +5320,27 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
         }
     }
 
-    public void showInhouseNativeAd(InhouseNativeListener inhouseNativeListener) {
-
-        if (adsPrefernce.isNativeAdLoaded()) {
-            if (isNetworkAvailable(this)) {
-                if (finalNative.size() != 0) {
-
-                    inflateNativeAdInHouse((RelativeLayout) findViewById(R.id.lay_native_ad), (CardView) findViewById(R.id.native_ad_cardview));
-                    inhouseNativeListener.onAdLoaded();
-
-                } else {
-                    inhouseNativeListener.onAdShowFailed();
-                }
-            } else {
-                inflateNativeAdInHouse((RelativeLayout) findViewById(R.id.lay_native_ad), (CardView) findViewById(R.id.native_ad_cardview));
-                inhouseNativeListener.onAdLoaded();
-            }
-
-        } else {
-            inhouseNativeListener.onAdShowFailed();
-        }
-    }
+//    public void showInhouseNativeAd(InhouseNativeListener inhouseNativeListener) {
+//
+//        if (adsPrefernce.isNativeAdLoaded()) {
+//            if (isNetworkAvailable(this)) {
+//                if (finalNative.size() != 0) {
+//
+//                    inflateNativeAdInHouse((RelativeLayout) findViewById(R.id.lay_native_ad), (CardView) findViewById(R.id.native_ad_cardview));
+//                    inhouseNativeListener.onAdLoaded();
+//
+//                } else {
+//                    inhouseNativeListener.onAdShowFailed();
+//                }
+//            } else {
+//                inflateNativeAdInHouse((RelativeLayout) findViewById(R.id.lay_native_ad), (CardView) findViewById(R.id.native_ad_cardview));
+//                inhouseNativeListener.onAdLoaded();
+//            }
+//
+//        } else {
+//            inhouseNativeListener.onAdShowFailed();
+//        }
+//    }
 
     void showAdsPrivacyDialog() {
         Dialog privacyDialog = new Dialog(BaseClass.this);

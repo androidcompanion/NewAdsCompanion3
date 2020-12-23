@@ -170,7 +170,7 @@ public class NativeAdCompanion1 {
                     }
             } else {
                 if (context instanceof BaseClass){
-                    ((BaseClass)context).showInhouseNativeAd(new InhouseNativeListener() {
+                    ((BaseClass)context).showInhouseNativeAd(nativeAdContainer,new InhouseNativeListener() {
                         @Override
                         public void onAdLoaded() {
                             nativeAdContainer.setVisibility(View.VISIBLE);
@@ -511,7 +511,7 @@ public class NativeAdCompanion1 {
                         BaseClass.isFbN2Shown = true;
                         resetNativeShownBoolean();
                         if (context instanceof BaseClass){
-                            ((BaseClass)context).showInhouseNativeAd(new InhouseNativeListener() {
+                            ((BaseClass)context).showInhouseNativeAd(nativeAdContainer,new InhouseNativeListener() {
                                 @Override
                                 public void onAdLoaded() {
                                     nativeAdContainer.setVisibility(View.VISIBLE);
@@ -550,7 +550,7 @@ public class NativeAdCompanion1 {
             } else {
                 resetNativeShownBoolean();
                 if (context instanceof BaseClass){
-                    ((BaseClass)context).showInhouseNativeAd(new InhouseNativeListener() {
+                    ((BaseClass)context).showInhouseNativeAd(nativeAdContainer,new InhouseNativeListener() {
                         @Override
                         public void onAdLoaded() {
                             nativeAdContainer.setVisibility(View.VISIBLE);
@@ -565,7 +565,7 @@ public class NativeAdCompanion1 {
         } else {
             resetNativeShownBoolean();
             if (context instanceof BaseClass){
-                ((BaseClass)context).showInhouseNativeAd(new InhouseNativeListener() {
+                ((BaseClass)context).showInhouseNativeAd(nativeAdContainer,new InhouseNativeListener() {
                     @Override
                     public void onAdLoaded() {
                         nativeAdContainer.setVisibility(View.VISIBLE);
