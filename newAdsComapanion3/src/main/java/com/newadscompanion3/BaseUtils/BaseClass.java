@@ -5297,9 +5297,31 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
 
     }
 
+
+    public void showInhouseNativeAd(CardView cardView,InhouseNativeListener inhouseNativeListener) {
+
+        if (adsPrefernce.isNativeAdLoaded()) {
+            if (isNetworkAvailable(this)) {
+                if (finalNative.size() != 0) {
+
+                    inflateNativeAdInHouse((RelativeLayout) findViewById(R.id.lay_native_ad), cardView);
+                    inhouseNativeListener.onAdLoaded();
+
+                } else {
+                    inhouseNativeListener.onAdShowFailed();
+                }
+            } else {
+                inflateNativeAdInHouse((RelativeLayout) findViewById(R.id.lay_native_ad), cardView);
+                inhouseNativeListener.onAdLoaded();
+            }
+
+        } else {
+            inhouseNativeListener.onAdShowFailed();
+        }
+    }
+
     public void showInhouseNativeAd(InhouseNativeListener inhouseNativeListener) {
 
-//        if (isNetworkAvailable(this)) {
         if (adsPrefernce.isNativeAdLoaded()) {
             if (isNetworkAvailable(this)) {
                 if (finalNative.size() != 0) {
@@ -5318,10 +5340,6 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
         } else {
             inhouseNativeListener.onAdShowFailed();
         }
-//        }
-//        else {
-//            inhouseNativeListener.onAdShowFailed();
-//        }
     }
 
     void showAdsPrivacyDialog() {

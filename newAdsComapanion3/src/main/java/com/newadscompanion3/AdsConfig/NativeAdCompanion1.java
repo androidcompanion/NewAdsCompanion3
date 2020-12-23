@@ -79,7 +79,7 @@ public class NativeAdCompanion1 {
                             builder.withAdListener(new AdListener() {
                                 public void onAdFailedToLoad(int i) {
                                     if (context instanceof BaseClass){
-                                        ((BaseClass)context).showInhouseNativeAd(new InhouseNativeListener() {
+                                        ((BaseClass)context).showInhouseNativeAd(nativeAdContainer,new InhouseNativeListener() {
                                             @Override
                                             public void onAdLoaded() {
                                                 nativeAdContainer.setVisibility(View.VISIBLE);
@@ -120,7 +120,7 @@ public class NativeAdCompanion1 {
                                 @Override
                                 public void onError(Ad ad, AdError adError) {
                                     if (context instanceof BaseClass){
-                                        ((BaseClass)context).showInhouseNativeAd(new InhouseNativeListener() {
+                                        ((BaseClass)context).showInhouseNativeAd(nativeAdContainer,new InhouseNativeListener() {
                                             @Override
                                             public void onAdLoaded() {
                                                 nativeAdContainer.setVisibility(View.VISIBLE);
@@ -187,7 +187,7 @@ public class NativeAdCompanion1 {
         else {
 
             if (context instanceof BaseClass){
-                ((BaseClass)context).showInhouseNativeAd(new InhouseNativeListener() {
+                ((BaseClass)context).showInhouseNativeAd(nativeAdContainer,new InhouseNativeListener() {
                     @Override
                     public void onAdLoaded() {
                         nativeAdContainer.setVisibility(View.VISIBLE);
