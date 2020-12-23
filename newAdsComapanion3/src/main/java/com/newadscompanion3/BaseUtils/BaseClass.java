@@ -5352,7 +5352,7 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
 
             client.setConnectTimeout(50000);
 
-            client.post("http://inhouseads.winwingaming.com/api/get_interastital.php", params1, new BaseJsonHttpResponseHandler<InterstitialAdIH>() {
+                client.post("http://inhouseads.winwingaming.com/api/get_interastital.php", params1, new BaseJsonHttpResponseHandler<InterstitialAdIH>() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, InterstitialAdIH response) {
 
@@ -5632,9 +5632,6 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
 
 
 
-    public interface OnNetworkChange {
-         void onConnect();
-    }
 
 
     @Override

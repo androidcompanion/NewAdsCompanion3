@@ -201,6 +201,15 @@ public class NativeAdCompanion2 {
         UnifiedNativeAdView unifiedNativeAdView = (UnifiedNativeAdView) LayoutInflater.from(this.context).inflate(R.layout.native_ad_layout_google, null);
         cardView.removeAllViews();
         cardView.addView(unifiedNativeAdView);
+        TextView ad_body_view = unifiedNativeAdView.findViewById(R.id.ad_body);
+        TextView ad_price_view = unifiedNativeAdView.findViewById(R.id.ad_price);
+        TextView ad_store_view = unifiedNativeAdView.findViewById(R.id.ad_store);
+        TextView ad_headline_view = unifiedNativeAdView.findViewById(R.id.ad_headline);
+        ad_body_view.setSelected(true);
+        ad_price_view.setSelected(true);
+        ad_store_view.setSelected(true);
+        ad_headline_view.setSelected(true);
+
         unifiedNativeAdView.setMediaView((MediaView) unifiedNativeAdView.findViewById(R.id.ad_media));
         unifiedNativeAdView.setHeadlineView(unifiedNativeAdView.findViewById(R.id.ad_headline));
         unifiedNativeAdView.setBodyView(unifiedNativeAdView.findViewById(R.id.ad_body));

@@ -63,13 +63,17 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:ellipsize="marquee"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
                             android:id="@+id/ad_headline"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
                             android:layout_marginTop="4dp"
-                            android:ellipsize="end"
-                            android:maxLines="1"
                             android:textColor="#000"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -131,19 +135,30 @@
                 android:paddingBottom="5dp">
 
                 <TextView
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:id="@+id/ad_body"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/ad_call_to_action"
-                    android:ellipsize="end"
                     android:maxLines="2"
                     android:textColor="#707070"
                     android:textSize="12sp"
                     android:visibility="visible" />
 
                 <TextView
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:id="@+id/ad_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -155,6 +170,12 @@
                     android:visibility="gone" />
 
                 <TextView
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:id="@+id/ad_store"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

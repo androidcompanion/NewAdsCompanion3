@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lay_native_ad"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:visibility="gone"
-    android:id="@+id/lay_native_ad"
-    android:padding="2dp" >
+    android:padding="2dp"
+    android:visibility="visible">
 
     <RelativeLayout
         android:id="@+id/top_view"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:orientation="horizontal"
         android:paddingTop="5dp">
 
@@ -23,32 +23,40 @@
             android:layout_height="40.0dip" />
 
         <LinearLayout
-            android:layout_toStartOf="@+id/lay_info"
             android:id="@+id/lay_title"
-            android:layout_toEndOf="@id/iv_ad_icon_native"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/lay_info"
+            android:layout_toEndOf="@id/iv_ad_icon_native"
             android:orientation="vertical"
             android:paddingLeft="5dp"
             android:paddingRight="5dp">
 
             <TextView
-                android:text="Title"
                 android:id="@+id/tv_native_ad_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lines="1"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Title"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
             <TextView
-                android:text="Sub Title"
                 android:id="@+id/tv_native_ad_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lines="1"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Sub Title"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp" />
 
@@ -56,66 +64,71 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_alignParentEnd="true"
-            android:layout_weight="2"
             android:id="@+id/lay_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="2"
             android:gravity="end"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
 
             <ImageView
-                android:layout_gravity="center"
-                android:layout_weight="1"
                 android:id="@+id/iv_ads"
                 android:layout_width="20.0dip"
                 android:layout_height="20.0dip"
-                android:src="@drawable/ic_ads"
-                app:tint="@android:color/holo_blue_dark" />
-            <ImageView
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:src="@drawable/ic_ads"
+                app:tint="@android:color/holo_blue_dark" />
+
+            <ImageView
                 android:id="@+id/iv_native_info"
                 android:layout_width="20.0dip"
                 android:layout_height="20.0dip"
+                android:layout_gravity="center"
+                android:layout_weight="1"
                 android:src="@drawable/ic_info" />
         </LinearLayout>
 
     </RelativeLayout>
 
     <ImageView
-        android:adjustViewBounds="true"
-        android:layout_above="@id/bottom_view"
-        android:layout_below="@id/top_view"
         android:id="@+id/iv_native_main_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_view"
+        android:layout_below="@id/top_view"
+        android:adjustViewBounds="true"
         android:gravity="center" />
 
     <RelativeLayout
         android:id="@+id/bottom_view"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="50.0dip"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:padding="3dp">
 
         <RelativeLayout
-            android:layout_toStartOf="@+id/btn_ad_install_native"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/btn_ad_install_native"
             android:orientation="vertical">
 
             <TextView
-                android:layout_above="@id/lay_ratings"
-                android:layout_alignParentTop="true"
-                android:text="FREE!, Download Now"
                 android:id="@+id/tv_native_extra_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lines="1"
+                android:layout_above="@id/lay_ratings"
+                android:layout_alignParentTop="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="FREE!, Download Now"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="15sp" />
 
@@ -128,16 +141,16 @@
                 android:visibility="visible">
 
                 <RatingBar
-                    android:layout_gravity="center"
                     android:id="@+id/native_ad_rating"
-                    android:gravity="center_vertical"
                     style="?android:attr/ratingBarStyleSmall"
-                    android:numStars="5"
-                    android:stepSize="0.5"
-                    android:rating="4"
-                    android:isIndicator="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="4"
+                    android:stepSize="0.5" />
 
 
                 <TextView
@@ -154,19 +167,17 @@
             </LinearLayout>
 
 
-
-
         </RelativeLayout>
 
         <Button
-            android:layout_alignParentEnd="true"
-            android:text="Install"
             android:id="@+id/btn_ad_install_native"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
             android:background="@drawable/btn_ad_install"
             android:padding="5dp"
+            android:text="Install"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:visibility="visible" />
