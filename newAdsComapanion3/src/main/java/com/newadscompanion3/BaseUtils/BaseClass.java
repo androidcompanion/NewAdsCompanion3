@@ -1604,7 +1604,6 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
                         }
 
                     }
-
                 }
             }else {
                 loadMixedInterAds();
@@ -1616,6 +1615,11 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
     public void showSplashInterstitial(Callable<Void> mathodToFollow) {
         if (adsPrefernce.allowAccess()) {
             if (!adsPrefernce.isMediationActive()) {
+                try {
+                    mathodToFollow.call();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 showSplashAd();
             } else {
                 showMixedInterAds(mathodToFollow);
@@ -1915,7 +1919,6 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
             showInhouseInterAd(new InhouseInterstitialListener() {
                 @Override
                 public void onAdShown() {
-
                 }
 
                 @Override
@@ -1931,6 +1934,8 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
         }
 
     }
+
+
 
     public void goToPlanA2(Callable<Void> mathodToFollow) {
 
