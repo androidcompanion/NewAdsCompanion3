@@ -1606,6 +1606,8 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
                     }
 
                 }
+            }else {
+                loadMixedInterAds();
             }
 
         }
@@ -1817,45 +1819,6 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
                         }
                     }
                 }
-            } else {
-                // if ad data not downloaded
-                if (!isFbInter1Ready) {
-                    fbInterstitial1 = new com.facebook.ads.InterstitialAd(this, defaultIds.FB_INTER1());
-                    InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
-                        @Override
-                        public void onInterstitialDisplayed(Ad ad) {
-
-                        }
-
-                        @Override
-                        public void onInterstitialDismissed(Ad ad) {
-
-                        }
-
-                        @Override
-                        public void onError(Ad ad, AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onAdLoaded(Ad ad) {
-                            isFbInter1Ready = true;
-                        }
-
-                        @Override
-                        public void onAdClicked(Ad ad) {
-
-                        }
-
-                        @Override
-                        public void onLoggingImpression(Ad ad) {
-
-                        }
-                    };
-                    fbInterstitial1.loadAd(fbInterstitial1.buildLoadAdConfig().withAdListener(interstitialAdListener).build());
-
-                }
-
             }
         }
 
@@ -3069,10 +3032,24 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
                                 }
                             };
                             fbInterstitial22.buildLoadAdConfig().withAdListener(interstitialAdListener).build();
+                        }else {
+                            showInhouseInterAd(new InhouseInterstitialListener() {
+                                @Override
+                                public void onAdShown() {
 
+                                }
+
+                                @Override
+                                public void onAdDismissed() {
+                                    try {
+                                        mathodToFollow.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            });
                         }
-
-
                     } else {
                         showInhouseInterAd(new InhouseInterstitialListener() {
                             @Override
@@ -3091,6 +3068,24 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
                             }
                         });
                     }
+
+                }else {
+                    showInhouseInterAd(new InhouseInterstitialListener() {
+                        @Override
+                        public void onAdShown() {
+
+                        }
+
+                        @Override
+                        public void onAdDismissed() {
+                            try {
+                                mathodToFollow.call();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
 
                 }
             } else {
@@ -3241,8 +3236,43 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
                                 };
                                 fbInterstitial11.buildLoadAdConfig().withAdListener(interstitialAdListener).build();
 
+                            }else {
+                                showInhouseInterAd(new InhouseInterstitialListener() {
+                                    @Override
+                                    public void onAdShown() {
+
+                                    }
+
+                                    @Override
+                                    public void onAdDismissed() {
+                                        try {
+                                            mathodToFollow.call();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
                             }
 
+
+                        }else {
+                            showInhouseInterAd(new InhouseInterstitialListener() {
+                                @Override
+                                public void onAdShown() {
+
+                                }
+
+                                @Override
+                                public void onAdDismissed() {
+                                    try {
+                                        mathodToFollow.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            });
 
                         }
                     }
