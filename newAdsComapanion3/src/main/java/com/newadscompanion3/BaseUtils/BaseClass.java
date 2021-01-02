@@ -1622,9 +1622,21 @@ public class BaseClass extends AppCompatActivity implements NetworkStateReceiver
                 }
                 showSplashAd();
             } else {
+
+                try {
+                    mathodToFollow.call();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 showMixedInterAds(mathodToFollow);
             }
 
+        }else {
+            try {
+                    mathodToFollow.call();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         }
     }
 
