@@ -38,7 +38,7 @@ dependencies {
 
     //facebook
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.facebook.android:audience-network-sdk:6.1.0'
+    implementation 'com.facebook.android:audience-network-sdk:6.2.0'
 
     //google
     implementation 'com.google.android.gms:play-services-ads:19.6.0'
